@@ -1068,7 +1068,28 @@ function toast(msg) {
   el.classList.add('show');
   toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
 }
-
+// ═══════════════════════════════════════
+//  CARREGAR CLIENTES
+// ═══════════════════════════════════════
+async function carregar() {
+  try {
+    const resp = await fetch('https://web-production-78d587.up.railway.app/clientes');
+    const dados = await resp.json();
+    clientes = dados.map(c => ({
+      id: c.id,
+      nome: c.nome,
+      cota: c.grupo_cota,
+      modelo: c.modelo,
+      cor: c.cor,
+      status: c.status,
+      entrada: c.data_entrada || '—',
+      contemplacao: c.data_contemplacao || '—',
+      criado_em: c.criado_em,
+      _ent_raw: '',
+      _cmp_raw: '',
+    }));
+  } catch(e) { clientes = []; }
+}
 // ═══════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════
