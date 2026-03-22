@@ -635,7 +635,7 @@ td:first-child{text-align:center}
 </div>
 
 <!-- ══════════ MODAL EDITAR ══════════ -->
-<div class="modal-bg" id="modal-bg" onclick="fecharModal(event)">
+<div class="modal-bg" id="modal-bg">
   <div class="modal">
     <div class="modal-head">
       <h2>Editar Cliente</h2>
@@ -651,8 +651,8 @@ td:first-child{text-align:center}
       <div class="field">
         <label>Status</label>
         <select id="m-status">
-          <option value="Aguardando Contemplação">⏳ Aguardando Contemplação</option>
-          <option value="Contemplado">✅ Contemplado</option>
+          <option value="Aguardando Contemplação"> Aguardando Contemplação</option>
+          <option value="Contemplado"> Contemplado</option>
         </select>
       </div>
       <div class="fgrid">
@@ -677,6 +677,12 @@ const KEY = 'mm_clientes_v2';
 let clientes = [];
 let filtroAtivo = 'todos';
 let editandoId = null;
+function setFiltro(f, btn) {
+  filtroAtivo = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTabela();
+}
 
 // ═══════════════════════════════════════
 //  PERSISTÊNCIA
@@ -883,11 +889,13 @@ function abrirModal(id) {
   document.getElementById('modal-bg').classList.add('open');
 }
 
-function fecharModal(e) {
-  if (e && e.target !== document.getElementById('modal-bg')) return;
+function fecharModal() {
   document.getElementById('modal-bg').classList.remove('open');
   editandoId = null;
 }
+document.getElementById('modal-bg').addEventListener('click', function(e) {
+  if (e.target === this) fecharModal();
+});
 
 async function salvarEdicao() {
   const c = clientes.find(x => x.id === editandoId);
@@ -967,10 +975,10 @@ function renderTabela() {
       <td>${c.entrada}</td>
       <td>${c.contemplacao}</td>
       <td style="display:flex;gap:4px">
-        <button class="btn-row-action" onclick="abrirModal(${c.id})" title="Editar">
+        <button class="btn-row-action" onclick="abrirModal('${c.id}')" title="Editar">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
         </button>
-        <button class="btn-row-action" onclick="remover(${c.id})" title="Remover">
+        <button class="btn-row-action" onclick="remover('${c.id}')" title="Remover">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
         </button>
       </td>
