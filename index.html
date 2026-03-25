@@ -307,7 +307,182 @@ MAIN AREA
 .searchbar:focus-within{border-color:var(--r);box-shadow:0 0 0 3px rgba(208,32,30,.08)}
 .searchbar svg{width:14px;height:14px;fill:var(--s4);flex-shrink:0}
 .searchbar input{border:none;outline:none;font-size:13px;font-family:'Sora',sans-serif;color:var(--s1);background:transparent;width:180px}
+.view-tabs{display:flex;gap:8px;margin-bottom:14px}
+.vtab{
+  padding:8px 16px;border-radius:8px;
+  font-size:12px;font-weight:700;font-family:'Sora',sans-serif;
+  border:1.5px solid var(--bd);background:#fff;color:var(--s2);
+  cursor:pointer;transition:all .2s;
+}
+.vtab.active{background:var(--r);color:#fff;border-color:var(--r)}
 
+.resumo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.resumo-card{
+  background:#fff;border-radius:var(--rad);
+  box-shadow:var(--sh);overflow:hidden;
+}
+.resumo-card-header{
+  background:var(--rg);padding:12px 16px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:2px;
+  color:#fff;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.resumo-card-header span{
+  background:rgba(255,255,255,.2);
+  border-radius:20px;padding:2px 10px;font-size:12px;
+}
+.resumo-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;border-bottom:1px solid var(--bd);font-size:13px;
+}
+.resumo-item:last-child{border-bottom:none}
+.resumo-item strong{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:18px;color:var(--r);
+}
+.resumo-empty{padding:32px;text-align:center;color:var(--s4);font-size:13px}
+
+/* ═══════════════════════════════════════
+ESTOQUE VIEW
+═══════════════════════════════════════ */
+.estoque-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+.estoque-card{
+  background:#fff;border-radius:var(--rad);
+  box-shadow:var(--sh);overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.estoque-card:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.estoque-card-header{
+  background:var(--rg);padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.estoque-card-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:16px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;color:#fff;
+}
+.estoque-card-total{
+  background:rgba(255,255,255,.22);
+  border-radius:20px;padding:3px 12px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:15px;font-weight:700;color:#fff;
+  white-space:nowrap;
+}
+.estoque-cores{padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+.estoque-cor-row{display:flex;flex-direction:column;gap:4px}
+.estoque-cor-info{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--s2);
+}
+.estoque-cor-qtd{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:15px;font-weight:700;color:var(--s1);
+}
+.estoque-bar-track{
+  height:7px;background:var(--bg);border-radius:4px;overflow:hidden;
+}
+.estoque-bar-fill{
+  height:100%;background:var(--rg);border-radius:4px;
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+}
+.estoque-footer{
+  border-top:1px solid var(--bd);
+  padding:10px 18px;
+  display:flex;gap:16px;
+  background:#FAFAFA;
+}
+.estoque-footer-stat{
+  display:flex;align-items:center;gap:5px;
+  font-size:11px;color:var(--s3);font-weight:500;
+}
+.estoque-footer-stat strong{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:15px;font-weight:700;
+}
+.estoque-footer-stat.contemp strong{color:var(--gr)}
+.estoque-footer-stat.aguard strong{color:var(--yw)}
+.estoque-empty{
+  grid-column:1/-1;padding:56px 32px;text-align:center;
+  background:#fff;border-radius:var(--rad);box-shadow:var(--sh);
+  color:var(--s4);font-size:14px;
+}
+
+/* ═══════════════════════════════════════
+ABA NAVIGATION
+═══════════════════════════════════════ */
+.aba-nav{
+  background:#fff;
+  border-bottom:2px solid var(--bd);
+  padding:0 28px;
+  display:flex;
+}
+.aba-tab{
+  padding:14px 22px;
+  font-size:12px;font-weight:700;font-family:'Sora',sans-serif;
+  border:none;background:transparent;cursor:pointer;
+  color:var(--s3);letter-spacing:.3px;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;
+}
+.aba-tab.active{color:var(--r);border-bottom-color:var(--r)}
+.aba-tab:hover:not(.active){color:var(--s1)}
+
+/* ═══════════════════════════════════════
+ABA 3 — HISTÓRICO
+═══════════════════════════════════════ */
+.hist-badge{
+  display:inline-block;
+  padding:3px 9px;border-radius:5px;
+  font-size:10px;font-weight:700;letter-spacing:.8px;
+  color:#fff;
+}
+.hist-badge.adicionado{background:var(--gr)}
+.hist-badge.editado   {background:#B45309}
+.hist-badge.removido  {background:var(--r)}
+
+/* ═══════════════════════════════════════
+ABA 2 — ESTOQUE INDEPENDENTE
+═══════════════════════════════════════ */
+.e2-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:20px;gap:16px;flex-wrap:wrap;
+}
+.e2-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:28px;font-weight:800;color:var(--s1);
+  letter-spacing:1px;text-transform:uppercase;line-height:1;
+}
+.e2-sub{font-size:12px;color:var(--s3);margin-top:5px}
+.e2-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn-danger{color:#DC2626 !important}
+.btn-danger:hover{background:#FEF2F2 !important;color:#B91C1C !important}
+.e2-table{width:100%;border-collapse:collapse}
+.e2-table th{
+  padding:9px 14px;text-align:left;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--s3);
+  border-bottom:1px solid var(--bd);background:#FAFAFA;
+}
+.e2-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--bd)}
+.e2-table tbody tr:last-child td{border-bottom:none}
+.e2-table tbody tr:hover{background:#FFF8F8}
+.td-qtd{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:17px;font-weight:700;color:var(--r);width:60px;
+}
+.td-pct{width:200px}
+.e2-bar-wrap{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--s3)}
+.e2-tabela-wrap{margin-top:28px}
+.e2-section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--r);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.e2-section-label::after{content:'';flex:1;height:1px;background:var(--bd)}
 .filter-btn{
   background:#fff;border:1.5px solid var(--bd);
   border-radius:9px;padding:8px 14px;
@@ -477,16 +652,16 @@ td:first-child{text-align:center}
       <div class="logo-tagline">Sistema de Consórcios</div>
     </div>
   </div>
-  <div class="hbar">
-    <div class="hstat">Clientes <span id="hcount">0</span></div>
-    <div class="hstat">Contemplados <span id="hcontemp">0</span></div>
-    <button class="btn-xl" onclick="exportarXLSX()">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-      Exportar Excel
-    </button>
-  </div>
 </header>
 
+<!-- NAVEGACAO ENTRE ABAS -->
+<div class="aba-nav">
+  <button class="aba-tab active" onclick="setAba(1,this)">Acompanhamento de Processos</button>
+  <button class="aba-tab" onclick="setAba(2,this)">Separacao de Modelo e Cor</button>
+  <button class="aba-tab" onclick="setAba(3,this)">Histórico</button>
+</div>
+
+<div id="aba-1">
 <div class="wrap">
 
   <!-- ══════════ SIDEBAR ══════════ -->
@@ -556,7 +731,7 @@ td:first-child{text-align:center}
       </div>
     </div>
 
-    <button class="btn-add" onclick="adicionarCliente()">
+    <button class="btn-add" id="btn-adicionar" onclick="adicionarCliente()">
       <svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
       Adicionar Cliente
     </button>
@@ -569,6 +744,14 @@ td:first-child{text-align:center}
 
   <!-- ══════════ MAIN ══════════ -->
   <main class="main">
+
+    <!-- TOOLBAR EXPORTAR -->
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+      <button class="btn-xl" style="border:1.5px solid var(--r)" onclick="exportarXLSX()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Exportar Excel
+      </button>
+    </div>
 
     <!-- KPIs -->
     <div class="kpis">
@@ -610,7 +793,8 @@ td:first-child{text-align:center}
         </div>
       </div>
     </div>
-
+<!-- VIEW CLIENTES -->
+<div id="view-clientes">
     <!-- TABLE -->
     <div class="tcard">
       <table>
@@ -635,9 +819,116 @@ td:first-child{text-align:center}
         <p>Importe um PDF ou preencha os campos<br>ao lado para adicionar o primeiro cliente.</p>
       </div>
     </div>
+  </div><!-- fecha view-clientes -->
 
   </main>
 </div>
+</div><!-- fecha aba-1 -->
+
+<!-- ══════════ ABA 2 — SEPARACAO DE MODELO E COR ══════════ -->
+<div id="aba-2" style="display:none">
+<div class="wrap">
+
+  <aside class="sidebar">
+    <div class="sec-label">Importar PDF</div>
+    <div class="dropzone" id="dropzone2">
+      <input type="file" id="fileInput2" accept=".pdf,.png,.jpg,.jpeg">
+      <div class="dz-ring">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+      </div>
+      <div class="dz-title">Arraste o PDF do consorcio</div>
+      <div class="dz-sub">ou clique para selecionar o arquivo</div>
+      <div class="dz-types">
+        <span class="dz-type">PDF</span>
+        <span class="dz-type">PNG</span>
+        <span class="dz-type">JPG</span>
+      </div>
+    </div>
+    <div class="alert" id="alert2"></div>
+    <div class="sec-label" style="margin-top:4px">Dados da Moto</div>
+    <div class="field">
+      <label>Modelo <span class="lbadge" id="lb2-modelo" style="display:none">Extraido</span></label>
+      <input type="text" id="e-modelo" placeholder="CG 160 TITAN S">
+      <div class="etag" id="et2-modelo">Extraido pelo sistema</div>
+    </div>
+    <div class="field">
+      <label>Cor <span class="lbadge" id="lb2-cor" style="display:none">Extraido</span></label>
+      <input type="text" id="e-cor" placeholder="BRANCA">
+      <div class="etag" id="et2-cor">Extraido pelo sistema</div>
+    </div>
+    <button class="btn-add" id="btn-estoque" onclick="adicionarAoEstoque()">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      Adicionar ao Estoque
+    </button>
+    <button class="btn-clear" onclick="limparFormEstoque()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      Limpar campos
+    </button>
+  </aside>
+
+  <main class="main">
+    <div class="e2-header">
+      <div>
+        <div class="e2-title">Estoque de Motos</div>
+        <div class="e2-sub" id="e2-sub">Nenhuma unidade registrada</div>
+      </div>
+      <div class="e2-btns">
+        <button class="btn-xl" onclick="exportarEstoqueXLSX()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 9h2v11H5zm6-5h2v16h-2zm6 8h2v8h-2z"/></svg>
+          Exportar Estoque Excel
+        </button>
+        <button class="btn-xl btn-danger" onclick="zerarEstoque()">Zerar Estoque</button>
+      </div>
+    </div>
+    <div class="estoque-grid" id="estoque2-grid"></div>
+    <div class="e2-tabela-wrap" id="e2-tabela-wrap" style="display:none">
+      <div class="e2-section-label">Resumo Geral</div>
+      <div class="tcard">
+        <table class="e2-table">
+          <thead><tr><th>Modelo</th><th>Cor</th><th>Quantidade</th></tr></thead>
+          <tbody id="e2-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+</div>
+</div><!-- fecha aba-2 -->
+
+<!-- ══════════ ABA 3 — HISTÓRICO ══════════ -->
+<div id="aba-3" style="display:none">
+  <div class="main">
+
+    <div class="toolbar" style="margin-bottom:18px">
+      <div class="toolbar-left">
+        <div class="tbar-title">Histórico de Alterações</div>
+      </div>
+      <button class="btn-xl" id="btn-hist-refresh" style="border:1.5px solid var(--r)" onclick="carregarHistorico()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+        Atualizar
+      </button>
+    </div>
+
+    <div class="tcard">
+      <table>
+        <thead>
+          <tr>
+            <th>Data / Hora</th>
+            <th>Ação</th>
+            <th>Cliente</th>
+            <th>Grupo / Cota</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody id="hist-tbody"></tbody>
+      </table>
+      <div id="hist-empty" style="display:none;padding:56px 32px;text-align:center;color:var(--s3);font-size:13px">
+        Nenhuma alteração registrada ainda.
+      </div>
+    </div>
+
+  </div>
+</div><!-- fecha aba-3 -->
 
 <!-- ══════════ MODAL EDITAR ══════════ -->
 <div class="modal-bg" id="modal-bg">
@@ -724,6 +1015,27 @@ fi.addEventListener('change', e => {
   e.target.value = '';
 });
 
+function dzSetLoading() {
+  Array.from(dz.children).forEach(el => { if (el.tagName !== 'INPUT') el.style.display = 'none'; });
+  const ld = document.createElement('div');
+  ld.id = 'dz-loading';
+  ld.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0;pointer-events:none';
+  ld.innerHTML = '<div class="spin" style="width:24px;height:24px;border:3px solid var(--r);border-top-color:transparent;border-radius:50%;animation:spin .65s linear infinite"></div><div style="font-size:13px;font-weight:600;color:var(--r)">Processando PDF...</div>';
+  dz.appendChild(ld);
+  const btn = document.getElementById('btn-adicionar');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin"></div> Aguarde...';
+}
+
+function dzRestore() {
+  const ld = document.getElementById('dz-loading');
+  if (ld) ld.remove();
+  Array.from(dz.children).forEach(el => { if (el.tagName !== 'INPUT') el.style.display = ''; });
+  const btn = document.getElementById('btn-adicionar');
+  btn.disabled = false;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Adicionar Cliente';
+}
+
 // ═══════════════════════════════════════
 //  PROCESSAR ARQUIVO
 // ═══════════════════════════════════════
@@ -734,6 +1046,7 @@ async function processarArquivo(file) {
 
   setAlert('loading', 'Lendo arquivo...');
   limparExtraidos();
+  dzSetLoading();
 
   try {
     const base64 = await toBase64(file);
@@ -743,6 +1056,8 @@ async function processarArquivo(file) {
   } catch(err) {
     console.error(err);
     setAlert('error', 'Erro na extração. Preencha manualmente os campos.');
+  } finally {
+    dzRestore();
   }
 }
 
@@ -833,36 +1148,59 @@ async function adicionarCliente() {
 
   if (!nome && !cota) { toast(' Preencha ao menos Nome ou Grupo/Cota'); return; }
 
-  const resp = await fetch('https://web-production-78d587.up.railway.app/clientes', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      nome: nome || '—',
-      grupo_cota: cota || '—',
-      modelo: modelo || '—',
-      cor: cor || '—',
-      status,
-      data_entrada: ent ? fmtDate(ent) : '—',
-      data_contemplacao: cmp ? fmtDate(cmp) : '—',
-    })
-  });
-  const cliente = await resp.json();
-  clientes.unshift({
-    id: cliente.id,
-    nome: cliente.nome,
-    cota: cliente.grupo_cota,
-    modelo: cliente.modelo,
-    cor: cliente.cor,
-    status: cliente.status,
-    entrada: cliente.data_entrada,
-    contemplacao: cliente.data_contemplacao,
-    criado_em: cliente.criado_em,
-  });
-  renderTabela();
-  atualizarKPIs();
-  limparFormulario();
-  setAlert('success', `${(nome||'Cliente').split(' ')[0]} adicionado com sucesso!`);
-  toast(` ${(nome||'Cliente').split(' ')[0]} adicionado`);
+  const btn = document.getElementById('btn-adicionar');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin"></div> Salvando...';
+
+  try {
+    const resp = await fetch('https://web-production-78d587.up.railway.app/clientes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: nome || '—',
+        grupo_cota: cota || '—',
+        modelo: modelo || '—',
+        cor: cor || '—',
+        status,
+        data_entrada: ent ? fmtDate(ent) : '—',
+        data_contemplacao: cmp ? fmtDate(cmp) : '—',
+      })
+    });
+
+    if (resp.status === 409) {
+      setAlert('error', 'Este Grupo/Cota já está cadastrado no sistema.');
+      const fCota = document.getElementById('f-cota');
+      fCota.style.borderColor = '#DC2626';
+      fCota.style.boxShadow = '0 0 0 3px rgba(220,38,38,.25)';
+      fCota.addEventListener('input', function clearErr() {
+        fCota.style.borderColor = '';
+        fCota.style.boxShadow = '';
+        fCota.removeEventListener('input', clearErr);
+      });
+      return;
+    }
+
+    const cliente = await resp.json();
+    clientes.unshift({
+      id: cliente.id,
+      nome: cliente.nome,
+      cota: cliente.grupo_cota,
+      modelo: cliente.modelo,
+      cor: cliente.cor,
+      status: cliente.status,
+      entrada: cliente.data_entrada,
+      contemplacao: cliente.data_contemplacao,
+      criado_em: cliente.criado_em,
+    });
+    renderTabela();
+    atualizarKPIs();
+    limparFormulario();
+    setAlert('success', `${(nome||'Cliente').split(' ')[0]} adicionado com sucesso!`);
+    toast(` ${(nome||'Cliente').split(' ')[0]} adicionado`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Adicionar Cliente';
+  }
 }
 // ═══════════════════════════════════════
 //  REMOVER
@@ -1010,8 +1348,6 @@ function atualizarKPIs() {
   document.getElementById('k-aguard-pct').textContent  = `${pctA}% do total`;
   document.getElementById('k-hoje').textContent     = hj;
   document.getElementById('k-data').textContent     = hoje;
-  document.getElementById('hcount').textContent     = total;
-  document.getElementById('hcontemp').textContent   = contemp;
 }
 
 // ═══════════════════════════════════════
@@ -1021,38 +1357,92 @@ function exportarXLSX() {
   if (clientes.length === 0) { toast('⚠️ Nenhum cliente para exportar'); return; }
 
   const wb = XLSX.utils.book_new();
+  const nomAba = str => String(str).substring(0, 31);
+  const hoje = new Date().toLocaleDateString('pt-BR');
 
-  const headers = ['#','Nome do Cliente','Grupo / Cota','Modelo','Cor','Status','Data Entrada','Data Contemplação','Cadastrado Em'];
-  const rows = clientes.map((c, i) => [
-    i + 1, c.nome, c.cota, c.modelo, c.cor, c.status, c.entrada, c.contemplacao, c.criado_em
+  // ── Agrupa por modelo ──────────────────────────────────────────────────────
+  // modeloMap[modelo] = { lista: [], cores: { cor: { total, contemp } } }
+  const modeloMap = {};
+  clientes.forEach(c => {
+    const m  = c.modelo || '—';
+    const cr = c.cor    || '—';
+    if (!modeloMap[m]) modeloMap[m] = { lista: [], cores: {} };
+    modeloMap[m].lista.push(c);
+    if (!modeloMap[m].cores[cr]) modeloMap[m].cores[cr] = { total: 0, contemp: 0 };
+    modeloMap[m].cores[cr].total++;
+    if (c.status === 'Contemplado') modeloMap[m].cores[cr].contemp++;
+  });
+  const modelosOrdenados = Object.keys(modeloMap).sort();
+
+  // ── ABA 1 — Todos os Clientes ──────────────────────────────────────────────
+  const hdAll = ['#','Nome','Grupo/Cota','Modelo','Cor','Status','Entrada','Contemplação'];
+  const rowsAll = clientes.map((c,i) => [
+    i+1, c.nome, c.cota, c.modelo, c.cor, c.status,
+    c.entrada, c.contemplacao
   ]);
+  const wsAll = XLSX.utils.aoa_to_sheet([hdAll, ...rowsAll]);
+  wsAll['!cols'] = [{wch:5},{wch:38},{wch:18},{wch:22},{wch:14},{wch:26},{wch:14},{wch:18}];
+  XLSX.utils.book_append_sheet(wb, wsAll, 'Todos os Clientes');
 
-  const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
-  ws['!cols'] = [
-    {wch:5},{wch:40},{wch:18},{wch:22},
-    {wch:12},{wch:26},{wch:16},{wch:22},{wch:16}
+  // ── ABA 2 — Estoque por Modelo ─────────────────────────────────────────────
+  const hdEstoque = ['Modelo','Total de Motos','Contemplados','Aguardando','Cores Disponíveis'];
+  const rowsEstoque = modelosOrdenados.map(mod => {
+    const { lista, cores } = modeloMap[mod];
+    const contemp = lista.filter(c => c.status === 'Contemplado').length;
+    const coresLista = Object.keys(cores).sort()
+      .map(cr => `${cr} (${cores[cr].total})`).join(', ');
+    return [mod, lista.length, contemp, lista.length - contemp, coresLista];
+  });
+  const wsEst = XLSX.utils.aoa_to_sheet([hdEstoque, ...rowsEstoque]);
+  wsEst['!cols'] = [{wch:26},{wch:16},{wch:14},{wch:14},{wch:50}];
+  XLSX.utils.book_append_sheet(wb, wsEst, 'Estoque por Modelo');
+
+  // ── ABA por MODELO — detalhe de cores ─────────────────────────────────────
+  modelosOrdenados.forEach(mod => {
+    const { cores } = modeloMap[mod];
+    const hdMod = ['Cor','Quantidade','Contemplados','Aguardando'];
+    const rowsMod = Object.keys(cores).sort().map(cr => {
+      const { total, contemp } = cores[cr];
+      return [cr, total, contemp, total - contemp];
+    });
+    // linha de total
+    const totalMoots = modeloMap[mod].lista.length;
+    const totalContemp = modeloMap[mod].lista.filter(c => c.status === 'Contemplado').length;
+    rowsMod.push(['TOTAL', totalMoots, totalContemp, totalMoots - totalContemp]);
+
+    const ws = XLSX.utils.aoa_to_sheet([hdMod, ...rowsMod]);
+    ws['!cols'] = [{wch:16},{wch:12},{wch:14},{wch:14}];
+    XLSX.utils.book_append_sheet(wb, ws, nomAba(mod));
+  });
+
+  // ── ÚLTIMA ABA — Resumo Geral ──────────────────────────────────────────────
+  const totalClientes = clientes.length;
+  const totalContemp  = clientes.filter(c => c.status === 'Contemplado').length;
+  const resumoRows = [
+    ['MARAVILHA MOTOS — RESUMO GERAL'],
+    [''],
+    ['Gerado em:',       hoje],
+    ['Total de Clientes:', totalClientes],
+    ['Contemplados:',    totalContemp],
+    ['Aguardando:',      totalClientes - totalContemp],
+    [''],
+    ['ESTOQUE POR MODELO'],
+    ['Modelo', 'Total', 'Contemplados', 'Aguardando', 'Cores Disponíveis'],
+    ...modelosOrdenados.map(mod => {
+      const { lista, cores } = modeloMap[mod];
+      const c = lista.filter(x => x.status === 'Contemplado').length;
+      const coresLista = Object.keys(cores).sort()
+        .map(cr => `${cr} (${cores[cr].total})`).join(', ');
+      return [mod, lista.length, c, lista.length - c, coresLista];
+    }),
   ];
-  XLSX.utils.book_append_sheet(wb, ws, 'Clientes');
-
-  const total  = clientes.length;
-  const contemp= clientes.filter(c => c.status === 'Contemplado').length;
-  const hoje   = new Date().toLocaleDateString('pt-BR');
-
-  const wsR = XLSX.utils.aoa_to_sheet([
-    ['MARAVILHA MOTOS — RESUMO GERENCIAL'],[''],
-    ['Gerado em:', hoje],
-    ['Total de Clientes:', total],
-    ['Contemplados:', contemp],
-    ['Aguardando Contemplação:', total - contemp],
-    ['Taxa de Contemplação:', total ? `${Math.round(contemp/total*100)}%` : '0%'],
-  ]);
-  wsR['!cols'] = [{wch:28},{wch:18}];
-  XLSX.utils.book_append_sheet(wb, wsR, 'Resumo');
+  const wsRes = XLSX.utils.aoa_to_sheet(resumoRows);
+  wsRes['!cols'] = [{wch:26},{wch:8},{wch:14},{wch:14},{wch:50}];
+  XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo Geral');
 
   XLSX.writeFile(wb, `maravilha-motos-${hoje.replace(/\//g,'-')}.xlsx`);
   toast('📊 Excel exportado com sucesso!');
 }
-
 // ═══════════════════════════════════════
 //  UTILS
 // ═══════════════════════════════════════
@@ -1104,12 +1494,370 @@ async function carregar() {
   } catch(e) { clientes = []; }
 }
 // ═══════════════════════════════════════
+//  NAVEGACAO ENTRE ABAS
+// ═══════════════════════════════════════
+function setAba(n, btn) {
+  document.querySelectorAll('.aba-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('aba-1').style.display = n === 1 ? '' : 'none';
+  document.getElementById('aba-2').style.display = n === 2 ? '' : 'none';
+  document.getElementById('aba-3').style.display = n === 3 ? '' : 'none';
+  if (n === 2) renderEstoque2();
+  if (n === 3) carregarHistorico();
+}
+
+// ═══════════════════════════════════════
+//  ABA 2 — ESTADO E PERSISTENCIA
+// ═══════════════════════════════════════
+const ESTOQUE_KEY = 'mm_estoque_v1';
+let estoqueData = {};
+
+function carregarEstoque() {
+  try {
+    const saved = localStorage.getItem(ESTOQUE_KEY);
+    estoqueData = saved ? JSON.parse(saved) : {};
+  } catch(e) { estoqueData = {}; }
+}
+
+function salvarEstoque() {
+  localStorage.setItem(ESTOQUE_KEY, JSON.stringify(estoqueData));
+}
+
+// ═══════════════════════════════════════
+//  ABA 2 — DRAG & DROP
+// ═══════════════════════════════════════
+const dz2 = document.getElementById('dropzone2');
+const fi2 = document.getElementById('fileInput2');
+dz2.addEventListener('dragover', e => { e.preventDefault(); dz2.classList.add('over'); });
+dz2.addEventListener('dragleave', () => dz2.classList.remove('over'));
+dz2.addEventListener('drop', e => {
+  e.preventDefault(); dz2.classList.remove('over');
+  if (e.dataTransfer.files[0]) processarArquivoEstoque(e.dataTransfer.files[0]);
+});
+fi2.addEventListener('change', e => {
+  if (e.target.files[0]) processarArquivoEstoque(e.target.files[0]);
+  e.target.value = '';
+});
+
+// ═══════════════════════════════════════
+//  ABA 2 — PROCESSAR ARQUIVO
+// ═══════════════════════════════════════
+async function processarArquivoEstoque(file) {
+  const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+  const isImg = file.type.startsWith('image/');
+  if (!isPDF && !isImg) { setAlert2('error', 'Formato invalido. Use PDF ou imagem.'); return; }
+  setAlert2('loading', 'Lendo arquivo...');
+  try {
+    const base64 = await toBase64(file);
+    const mediaType = isPDF ? 'application/pdf' : file.type;
+    const dados = await extrairComIA(base64, mediaType, isPDF);
+    preencherFormEstoque(dados);
+  } catch(err) {
+    setAlert2('error', 'Erro na extracao. Preencha manualmente.');
+  }
+}
+
+function preencherFormEstoque(d) {
+  let n = 0;
+  if (d.modelo && String(d.modelo).trim()) {
+    document.getElementById('e-modelo').value = String(d.modelo).trim();
+    document.getElementById('e-modelo').classList.add('ok');
+    document.getElementById('et2-modelo').style.display = 'flex';
+    document.getElementById('lb2-modelo').style.display = 'inline';
+    n++;
+  }
+  if (d.cor && String(d.cor).trim()) {
+    document.getElementById('e-cor').value = String(d.cor).trim();
+    document.getElementById('e-cor').classList.add('ok');
+    document.getElementById('et2-cor').style.display = 'flex';
+    document.getElementById('lb2-cor').style.display = 'inline';
+    n++;
+  }
+  n > 0
+    ? setAlert2('success', `${n} campo(s) extraido(s) automaticamente.`)
+    : setAlert2('error', 'Dados nao encontrados. Preencha manualmente.');
+  if (n > 0) toast(`${n} campos extraidos do PDF`);
+}
+
+function limparFormEstoque() {
+  document.getElementById('e-modelo').value = '';
+  document.getElementById('e-cor').value = '';
+  ['e-modelo','e-cor'].forEach(id => document.getElementById(id).classList.remove('ok'));
+  document.getElementById('et2-modelo').style.display = 'none';
+  document.getElementById('et2-cor').style.display = 'none';
+  document.getElementById('lb2-modelo').style.display = 'none';
+  document.getElementById('lb2-cor').style.display = 'none';
+  const el = document.getElementById('alert2');
+  el.style.display = 'none'; el.className = 'alert';
+}
+
+// ═══════════════════════════════════════
+//  ABA 2 — ACOES
+// ═══════════════════════════════════════
+function adicionarAoEstoque() {
+  const modelo = document.getElementById('e-modelo').value.trim().toUpperCase();
+  const cor    = document.getElementById('e-cor').value.trim().toUpperCase();
+  if (!modelo || !cor) { toast('Informe o modelo e a cor'); return; }
+
+  const btn = document.getElementById('btn-estoque');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin"></div> Salvando...';
+
+  try {
+    if (!estoqueData[modelo]) estoqueData[modelo] = {};
+    if (!estoqueData[modelo][cor]) estoqueData[modelo][cor] = 0;
+    estoqueData[modelo][cor]++;
+    salvarEstoque();
+    renderEstoque2();
+    limparFormEstoque();
+    toast(`${modelo} — ${cor} adicionada ao estoque`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Adicionar ao Estoque';
+  }
+}
+
+function zerarEstoque() {
+  if (!confirm('Tem certeza que deseja zerar todo o estoque? Esta acao nao pode ser desfeita.')) return;
+  estoqueData = {};
+  salvarEstoque();
+  renderEstoque2();
+  toast('Estoque zerado');
+}
+
+// ═══════════════════════════════════════
+//  ABA 2 — RENDER
+// ═══════════════════════════════════════
+const COR_MAP = {
+  'BRANCA':   { bg: '#F5F5F5', color: '#1A1A1A', border: '2px solid #CCCCCC' },
+  'PRETA':    { bg: '#1A1A1A', color: '#FFFFFF' },
+  'VERMELHA': { bg: '#CC0000', color: '#FFFFFF' },
+  'AZUL':     { bg: '#1565C0', color: '#FFFFFF' },
+  'PRATA':    { bg: '#9E9E9E', color: '#FFFFFF' },
+  'CINZA':    { bg: '#616161', color: '#FFFFFF' },
+  'AMARELA':  { bg: '#F9A825', color: '#1A1A1A' },
+  'VERDE':    { bg: '#2E7D32', color: '#FFFFFF' },
+  'LARANJA':  { bg: '#E65100', color: '#FFFFFF' },
+  'VINHO':    { bg: '#6A1B2A', color: '#FFFFFF' },
+  'GRAFITE':  { bg: '#37474F', color: '#FFFFFF' },
+  'MARROM':   { bg: '#4E342E', color: '#FFFFFF' },
+};
+function corBadge(cor) {
+  const c = COR_MAP[cor.toUpperCase()] || { bg: '#757575', color: '#FFFFFF' };
+  const border = c.border ? `border:${c.border};` : '';
+  return `<span style="display:inline-block;background:${c.bg};color:${c.color};${border}border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.5px;min-width:80px;text-align:center;">${cor}</span>`;
+}
+
+function renderEstoque2() {
+  const grid       = document.getElementById('estoque2-grid');
+  const tabelaWrap = document.getElementById('e2-tabela-wrap');
+  const tbody      = document.getElementById('e2-tbody');
+  const sub        = document.getElementById('e2-sub');
+
+  const modelos = Object.keys(estoqueData).sort();
+
+  if (modelos.length === 0) {
+    grid.innerHTML = '<div class="estoque-empty">Nenhuma moto registrada no estoque.<br>Importe um PDF ou preencha o formulario ao lado.</div>';
+    tabelaWrap.style.display = 'none';
+    sub.textContent = 'Nenhuma unidade registrada';
+    return;
+  }
+
+  let totalGeral = 0;
+  modelos.forEach(mod => Object.values(estoqueData[mod]).forEach(q => totalGeral += q));
+  sub.textContent = `${totalGeral} unidade${totalGeral !== 1 ? 's' : ''} em ${modelos.length} modelo${modelos.length !== 1 ? 's' : ''}`;
+
+  grid.innerHTML = modelos.map(mod => {
+    const coresOrdenadas = Object.entries(estoqueData[mod]).sort((a,b) => b[1] - a[1]);
+    const totalMod = coresOrdenadas.reduce((s,[,q]) => s + q, 0);
+    const maxQtd   = coresOrdenadas[0][1];
+
+    const linhas = coresOrdenadas.map(([cor, qtd]) => {
+      const pct      = Math.round((qtd / maxQtd)   * 100);
+      const pctTotal = Math.round((qtd / totalMod)  * 100);
+      return `<tr>
+        <td>${corBadge(cor)}</td>
+        <td class="td-qtd">${qtd}</td>
+        <td class="td-pct">
+          <div class="e2-bar-wrap">
+            <div class="estoque-bar-track" style="flex:1">
+              <div class="estoque-bar-fill" style="width:${pct}%"></div>
+            </div>
+            <span>${pctTotal}%</span>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    return `
+      <div class="estoque-card">
+        <div class="estoque-card-header">
+          <span class="estoque-card-title">${mod}</span>
+          <span class="estoque-card-total">${totalMod} unidade${totalMod !== 1 ? 's' : ''}</span>
+        </div>
+        <table class="e2-table">
+          <thead><tr><th>Cor</th><th>Qtd</th><th>Percentual</th></tr></thead>
+          <tbody>${linhas}</tbody>
+        </table>
+        <div class="estoque-footer">
+          <div class="estoque-footer-stat">
+            <strong>${totalMod}</strong> unidade${totalMod !== 1 ? 's' : ''} no total
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Tabela resumo — ordenada do maior para o menor
+  tabelaWrap.style.display = 'block';
+  const allRows = [];
+  modelos.forEach(mod => {
+    Object.entries(estoqueData[mod]).sort((a,b) => b[1]-a[1])
+      .forEach(([cor, qtd]) => allRows.push([mod, cor, qtd]));
+  });
+  allRows.sort((a,b) => b[2] - a[2]);
+  tbody.innerHTML = allRows.map(([mod, cor, qtd]) => `
+    <tr>
+      <td><span class="td-modelo">${mod}</span></td>
+      <td><span style="font-size:13px;font-weight:600;color:#1A1A1A">${cor}</span></td>
+      <td><span class="tbar-count" style="font-size:13px;font-family:'Barlow Condensed',sans-serif">${qtd}</span></td>
+    </tr>`).join('');
+}
+
+// ═══════════════════════════════════════
+//  ABA 2 — EXPORTAR EXCEL
+// ═══════════════════════════════════════
+function exportarEstoqueXLSX() {
+  const modelos = Object.keys(estoqueData).sort();
+  if (modelos.length === 0) { toast('Nenhum dado para exportar'); return; }
+
+  const wb     = XLSX.utils.book_new();
+  const nomAba = str => String(str).substring(0, 31);
+  const hoje   = new Date().toLocaleDateString('pt-BR');
+
+  // Aba Estoque Geral
+  const rowsGeral = [];
+  modelos.forEach(mod =>
+    Object.entries(estoqueData[mod]).sort((a,b) => b[1]-a[1])
+      .forEach(([cor,qtd]) => rowsGeral.push([mod, cor, qtd]))
+  );
+  rowsGeral.sort((a,b) => b[2]-a[2]);
+  const wsGeral = XLSX.utils.aoa_to_sheet([['Modelo','Cor','Quantidade'], ...rowsGeral]);
+  wsGeral['!cols'] = [{wch:26},{wch:16},{wch:12}];
+  XLSX.utils.book_append_sheet(wb, wsGeral, 'Estoque Geral');
+
+  // Uma aba por modelo
+  modelos.forEach(mod => {
+    const coresOrdenadas = Object.entries(estoqueData[mod]).sort((a,b) => b[1]-a[1]);
+    const totalMod = coresOrdenadas.reduce((s,[,q]) => s+q, 0);
+    const rows = coresOrdenadas.map(([cor,qtd]) => [cor, qtd, `${Math.round(qtd/totalMod*100)}%`]);
+    rows.push(['TOTAL', totalMod, '100%']);
+    const ws = XLSX.utils.aoa_to_sheet([['Cor','Quantidade','Percentual'], ...rows]);
+    ws['!cols'] = [{wch:16},{wch:12},{wch:12}];
+    XLSX.utils.book_append_sheet(wb, ws, nomAba(mod));
+  });
+
+  // Aba Resumo
+  const corTotais = {};
+  modelos.forEach(mod =>
+    Object.entries(estoqueData[mod]).forEach(([cor,qtd]) => {
+      corTotais[cor] = (corTotais[cor] || 0) + qtd;
+    })
+  );
+  const resumoRows = [
+    ['ESTOQUE DE MOTOS — RESUMO'], [''],
+    ['Gerado em:', hoje], [''],
+    ['TOTAIS POR MODELO'], ['Modelo','Total'],
+    ...modelos.map(mod => [mod, Object.values(estoqueData[mod]).reduce((s,q) => s+q, 0)]),
+    [''],
+    ['TOTAIS POR COR'], ['Cor','Total'],
+    ...Object.entries(corTotais).sort((a,b) => b[1]-a[1]),
+  ];
+  const wsRes = XLSX.utils.aoa_to_sheet(resumoRows);
+  wsRes['!cols'] = [{wch:26},{wch:12}];
+  XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo');
+
+  XLSX.writeFile(wb, `estoque-motos-${hoje.replace(/\//g,'-')}.xlsx`);
+  toast('Estoque exportado com sucesso');
+}
+
+// ═══════════════════════════════════════
+//  ABA 2 — ALERT
+// ═══════════════════════════════════════
+let alertTimer2;
+function setAlert2(type, msg) {
+  clearTimeout(alertTimer2);
+  const el = document.getElementById('alert2');
+  el.className = `alert ${type}`;
+  el.innerHTML = type === 'loading'
+    ? `<div class="spin"></div>${msg}`
+    : (type === 'success' ? 'Sucesso: ' : 'Atencao: ') + msg;
+  if (type !== 'loading') alertTimer2 = setTimeout(() => { el.style.display='none'; el.className='alert'; }, 5000);
+}
+
+// ═══════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════
 carregar().then(() => {
   renderTabela();
   atualizarKPIs();
 });
+carregarEstoque();
+
+// ═══════════════════════════════════════
+//  ABA 3 — HISTÓRICO
+// ═══════════════════════════════════════
+async function carregarHistorico() {
+  const tbody = document.getElementById('hist-tbody');
+  const empty = document.getElementById('hist-empty');
+  const btn   = document.getElementById('btn-hist-refresh');
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin" style="width:13px;height:13px;border:2px solid var(--r);border-top-color:transparent;border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0"></div> Carregando...';
+  tbody.innerHTML = '';
+  empty.style.display = 'none';
+
+  try {
+    const resp = await fetch('https://web-production-78d587.up.railway.app/historico');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const dados = await resp.json();
+    renderHistorico(dados);
+  } catch(err) {
+    console.error(err);
+    empty.textContent = 'Erro ao carregar o histórico.';
+    empty.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg> Atualizar';
+  }
+}
+
+function renderHistorico(dados) {
+  const tbody = document.getElementById('hist-tbody');
+  const empty = document.getElementById('hist-empty');
+
+  if (!dados || dados.length === 0) {
+    tbody.innerHTML = '';
+    empty.textContent = 'Nenhuma alteração registrada ainda.';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  const acaoClass = { 'ADICIONADO':'adicionado', 'EDITADO':'editado', 'REMOVIDO':'removido' };
+
+  tbody.innerHTML = dados.map((h, i) => {
+    const acao = (h.acao || '—').toUpperCase();
+    const cls  = acaoClass[acao] || 'adicionado';
+    return `
+    <tr style="animation-delay:${i * 0.03}s">
+      <td style="white-space:nowrap">${h.data_hora || h.criado_em || '—'}</td>
+      <td><span class="hist-badge ${cls}">${acao}</span></td>
+      <td>${h.cliente || '—'}</td>
+      <td><span class="td-cota">${h.grupo_cota || '—'}</span></td>
+      <td style="color:var(--s3);font-size:12px">${h.detalhes || '—'}</td>
+    </tr>`;
+  }).join('');
+}
 </script>
 </body>
 </html>
