@@ -1143,19 +1143,18 @@ function limparFormulario() {
 //  ADICIONAR CLIENTE
 // ═══════════════════════════════════════
 async function adicionarCliente() {
-  const nome  = document.getElementById('f-nome').value.trim();
-  const cota  = document.getElementById('f-cota').value.trim();
-  const modelo= document.getElementById('f-modelo').value.trim();
-  const cor   = document.getElementById('f-cor').value.trim();
-  const status= document.getElementById('f-status').value;
-  const ent   = document.getElementById('f-entrada').value;
-  const cmp   = document.getElementById('f-contemp').value;
+  const nome   = document.getElementById('f-nome').value.trim()
+  const cota   = document.getElementById('f-cota').value.trim()
+  const modelo = document.getElementById('f-modelo').value.trim()
+  const cor    = document.getElementById('f-cor').value.trim()
+  const status = document.getElementById('f-status').value
+  const ent    = document.getElementById('f-entrada').value
+  const cmp    = document.getElementById('f-contemp').value
 
-  if (!nome && !cota) { toast(' Preencha ao menos Nome ou Grupo/Cota'); return; }
+  if (!nome && !cota) { toast('Preencha ao menos Nome ou Grupo/Cota'); return; }
 
-  const btn = document.getElementById('btn-adicionar');
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spin"></div> Salvando...';
+  const btnAdd = document.getElementById('btn-adicionar')
+  if (btnAdd) { btnAdd.disabled = true; btnAdd.innerHTML = '<div class="spin"></div> Salvando...' }
 
   try {
     const resp = await fetch('https://web-production-78d587.up.railway.app/clientes', {
@@ -1170,22 +1169,27 @@ async function adicionarCliente() {
         data_entrada: ent ? fmtDate(ent) : '—',
         data_contemplacao: cmp ? fmtDate(cmp) : '—',
       })
-    });
+    })
 
     if (resp.status === 409) {
-      setAlert('error', 'Este Grupo/Cota ja esta cadastrado no sistema.');
-      clearTimeout(alertTimer);
-      document.getElementById('f-cota').style.borderColor = '#CC0000';
-      document.getElementById('f-cota').style.boxShadow = '0 0 0 3px rgba(204,0,0,0.2)';
-      return;
+      setAlert('error', 'Este Grupo/Cota ja esta cadastrado no sistema.')
+      const campoCota = document.getElementById('f-cota')
+      campoCota.style.borderColor = '#CC0000'
+      campoCota.style.boxShadow = '0 0 0 3px rgba(204,0,0,0.25)'
+      campoCota.addEventListener('input', function limpar() {
+        campoCota.style.borderColor = ''
+        campoCota.style.boxShadow = ''
+        campoCota.removeEventListener('input', limpar)
+      })
+      return
     }
 
     if (!resp.ok) {
-      setAlert('error', 'Erro ao salvar cliente. Tente novamente.');
-      return;
+      setAlert('error', 'Erro ao salvar cliente. Tente novamente.')
+      return
     }
 
-    const cliente = await resp.json();
+    const cliente = await resp.json()
     clientes.unshift({
       id: cliente.id,
       nome: cliente.nome,
@@ -1196,15 +1200,20 @@ async function adicionarCliente() {
       entrada: cliente.data_entrada,
       contemplacao: cliente.data_contemplacao,
       criado_em: cliente.criado_em,
-    });
-    renderTabela();
-    atualizarKPIs();
-    limparFormulario();
-    setAlert('success', `${(nome||'Cliente').split(' ')[0]} adicionado com sucesso!`);
-    toast(` ${(nome||'Cliente').split(' ')[0]} adicionado`);
+    })
+    renderTabela()
+    atualizarKPIs()
+    limparFormulario()
+    setAlert('success', (nome || 'Cliente').split(' ')[0] + ' adicionado com sucesso!')
+    toast((nome || 'Cliente').split(' ')[0] + ' adicionado')
+
+  } catch(e) {
+    setAlert('error', 'Erro de conexao. Verifique sua internet.')
   } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Adicionar Cliente';
+    if (btnAdd) {
+      btnAdd.disabled = false
+      btnAdd.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Adicionar Cliente'
+    }
   }
 }
 // ═══════════════════════════════════════
