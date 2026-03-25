@@ -1036,10 +1036,6 @@ function dzRestore() {
   btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Adicionar Cliente';
 }
 
-document.getElementById('f-cota').addEventListener('input', function() {
-  this.style.borderColor = '';
-  this.style.boxShadow = '';
-});
 
 // ═══════════════════════════════════════
 //  PROCESSAR ARQUIVO
@@ -1137,9 +1133,6 @@ function limparFormulario() {
   document.getElementById('f-entrada').value = '';
   document.getElementById('f-contemp').value = '';
   document.getElementById('alert').style.display = 'none';
-  const campoCota = document.getElementById('f-cota');
-  campoCota.style.borderColor = '';
-  campoCota.style.boxShadow = '';
 }
 
 // ═══════════════════════════════════════
@@ -1176,14 +1169,6 @@ async function adicionarCliente() {
 
     if (resp.status === 409) {
       setAlert('error', 'Este Grupo/Cota ja esta cadastrado no sistema.')
-      const campoCota = document.getElementById('f-cota')
-      campoCota.style.borderColor = '#CC0000'
-      campoCota.style.boxShadow = '0 0 0 3px rgba(204,0,0,0.25)'
-      campoCota.addEventListener('input', function limpar() {
-        campoCota.style.borderColor = ''
-        campoCota.style.boxShadow = ''
-        campoCota.removeEventListener('input', limpar)
-      })
       return
     }
 
