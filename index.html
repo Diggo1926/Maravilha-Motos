@@ -429,18 +429,6 @@ ABA NAVIGATION
 .aba-tab.active{color:var(--r);border-bottom-color:var(--r)}
 .aba-tab:hover:not(.active){color:var(--s1)}
 
-/* ═══════════════════════════════════════
-ABA 3 — HISTÓRICO
-═══════════════════════════════════════ */
-.hist-badge{
-  display:inline-block;
-  padding:3px 9px;border-radius:5px;
-  font-size:10px;font-weight:700;letter-spacing:.8px;
-  color:#fff;
-}
-.hist-badge.adicionado{background:var(--gr)}
-.hist-badge.editado   {background:#B45309}
-.hist-badge.removido  {background:var(--r)}
 
 /* ═══════════════════════════════════════
 ABA 2 — ESTOQUE INDEPENDENTE
@@ -657,8 +645,7 @@ td:first-child{text-align:center}
 <!-- NAVEGACAO ENTRE ABAS -->
 <div class="aba-nav">
   <button class="aba-tab active" onclick="setAba(1,this)">Acompanhamento de Processos</button>
-  <button class="aba-tab" onclick="setAba(2,this)">Separacao de Modelo e Cor</button>
-  <button class="aba-tab" onclick="setAba(3,this)">Histórico</button>
+  <button class="aba-tab" onclick="setAba(2,this)">Separacão de Modelo e Cor</button>
 </div>
 
 <div id="aba-1">
@@ -895,40 +882,6 @@ td:first-child{text-align:center}
 </div>
 </div><!-- fecha aba-2 -->
 
-<!-- ══════════ ABA 3 — HISTÓRICO ══════════ -->
-<div id="aba-3" style="display:none">
-  <div class="main">
-
-    <div class="toolbar" style="margin-bottom:18px">
-      <div class="toolbar-left">
-        <div class="tbar-title">Histórico de Alterações</div>
-      </div>
-      <button class="btn-xl" id="btn-hist-refresh" style="border:1.5px solid var(--r)" onclick="carregarHistorico()">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-        Atualizar
-      </button>
-    </div>
-
-    <div class="tcard">
-      <table>
-        <thead>
-          <tr>
-            <th>Data / Hora</th>
-            <th>Ação</th>
-            <th>Cliente</th>
-            <th>Grupo / Cota</th>
-            <th>Detalhes</th>
-          </tr>
-        </thead>
-        <tbody id="hist-tbody"></tbody>
-      </table>
-      <div id="hist-empty" style="display:none;padding:56px 32px;text-align:center;color:var(--s3);font-size:13px">
-        Nenhuma alteração registrada ainda.
-      </div>
-    </div>
-
-  </div>
-</div><!-- fecha aba-3 -->
 
 <!-- ══════════ MODAL EDITAR ══════════ -->
 <div class="modal-bg" id="modal-bg">
@@ -1503,9 +1456,7 @@ function setAba(n, btn) {
   btn.classList.add('active');
   document.getElementById('aba-1').style.display = n === 1 ? '' : 'none';
   document.getElementById('aba-2').style.display = n === 2 ? '' : 'none';
-  document.getElementById('aba-3').style.display = n === 3 ? '' : 'none';
   if (n === 2) renderEstoque2();
-  if (n === 3) carregarHistorico();
 }
 
 // ═══════════════════════════════════════
@@ -1805,61 +1756,6 @@ carregar().then(() => {
 });
 carregarEstoque();
 
-// ═══════════════════════════════════════
-//  ABA 3 — HISTÓRICO
-// ═══════════════════════════════════════
-async function carregarHistorico() {
-  const tbody = document.getElementById('hist-tbody');
-  const empty = document.getElementById('hist-empty');
-  const btn   = document.getElementById('btn-hist-refresh');
-
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spin" style="width:13px;height:13px;border:2px solid var(--r);border-top-color:transparent;border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0"></div> Carregando...';
-  tbody.innerHTML = '';
-  empty.style.display = 'none';
-
-  try {
-    const resp = await fetch('https://web-production-78d587.up.railway.app/historico');
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const dados = await resp.json();
-    renderHistorico(dados);
-  } catch(err) {
-    console.error(err);
-    empty.textContent = 'Erro ao carregar o histórico.';
-    empty.style.display = 'block';
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg> Atualizar';
-  }
-}
-
-function renderHistorico(dados) {
-  const tbody = document.getElementById('hist-tbody');
-  const empty = document.getElementById('hist-empty');
-
-  if (!dados || dados.length === 0) {
-    tbody.innerHTML = '';
-    empty.textContent = 'Nenhuma alteração registrada ainda.';
-    empty.style.display = 'block';
-    return;
-  }
-
-  empty.style.display = 'none';
-  const acaoClass = { 'ADICIONADO':'adicionado', 'EDITADO':'editado', 'REMOVIDO':'removido' };
-
-  tbody.innerHTML = dados.map((h, i) => {
-    const acao = (h.acao || '—').toUpperCase();
-    const cls  = acaoClass[acao] || 'adicionado';
-    return `
-    <tr style="animation-delay:${i * 0.03}s">
-      <td style="white-space:nowrap">${h.data_hora || h.criado_em || '—'}</td>
-      <td><span class="hist-badge ${cls}">${acao}</span></td>
-      <td>${h.cliente || '—'}</td>
-      <td><span class="td-cota">${h.grupo_cota || '—'}</span></td>
-      <td style="color:var(--s3);font-size:12px">${h.detalhes || '—'}</td>
-    </tr>`;
-  }).join('');
-}
 </script>
 </body>
 </html>
