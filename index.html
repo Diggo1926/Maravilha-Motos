@@ -615,82 +615,22 @@ td:first-child{text-align:center}
 .btn-cancel:hover{border-color:var(--s4)}
 
 /* RESPONSIVE */
-@media(max-width:960px){
+@media(max-width:768px){
   .wrap{grid-template-columns:1fr}
   .sidebar{position:static;max-height:none;border-right:none;border-bottom:1px solid var(--bd)}
+  .tcard{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{min-width:600px}
   .kpis{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-  /* Header */
-  header{padding:0 12px}
-  .logo-badge{width:36px;height:36px}
-  .logo-name{font-size:15px;letter-spacing:1px}
-  .logo-tagline{display:none}
-  .hstat{display:none}
-
-  /* Abas */
-  .aba-nav{padding:0}
-  .aba-tab{flex:1;text-align:center;padding:12px 6px;font-size:11px;min-height:44px}
-
-  /* Layout */
-  .main{padding:14px 12px}
-
-  /* Sidebar */
-  .sidebar{padding:16px 14px}
   .fgrid{grid-template-columns:1fr}
-  .dropzone{padding:20px 12px}
-  .btn-add{min-height:48px}
-  .btn-clear{min-height:48px}
-
-  /* KPIs */
-  .kpis{grid-template-columns:1fr 1fr;gap:8px}
-  .kpi-val{font-size:28px}
-
-  /* Tabela — esconder no mobile */
-  .tcard{display:none}
-
-  /* Botoes de linha */
-  .btn-row-action{min-width:40px;min-height:40px}
-
-  /* Modal */
-  .modal{width:96vw;max-width:96vw}
+  .view-tabs{width:100%}
+  .vtab{font-size:11px;padding:6px 10px}
+  header{padding:0 12px}
+  .logo-name{font-size:16px}
+  .logo-badge{width:36px;height:36px}
+  .btn-row-action{width:36px;height:36px}
+  .modal{width:96vw}
   .modal-body .fgrid{grid-template-columns:1fr}
-  .modal-footer{flex-direction:column;gap:8px}
-  .btn-save,.btn-cancel{min-height:48px;width:100%;justify-content:center;display:flex;align-items:center}
-
-  /* Cards mobile visiveis */
-  .tbody-mobile{display:block}
 }
-
-/* ═══════════════════════════════════════
-CARDS MOBILE (ocultos no desktop)
-═══════════════════════════════════════ */
-.tbody-mobile{display:none}
-.cliente-card-mobile{
-  background:#fff;
-  border-radius:12px;
-  border-left:4px solid #CC0000;
-  padding:16px;
-  margin-bottom:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-.ccm-nome{font-size:15px;font-weight:700;color:var(--s1);margin-bottom:4px}
-.ccm-cota{font-size:13px;font-weight:600;color:#CC0000;margin-bottom:12px}
-.ccm-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-bottom:12px}
-.ccm-field{display:flex;flex-direction:column;gap:2px}
-.ccm-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--s3)}
-.ccm-value{font-size:12px;color:var(--s1)}
-.ccm-footer{display:flex;gap:8px;border-top:1px solid var(--bd);padding-top:12px}
-.ccm-btn{
-  flex:1;min-height:44px;border-radius:8px;
-  font-size:12px;font-weight:700;font-family:'Sora',sans-serif;
-  cursor:pointer;border:none;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.ccm-btn-edit{background:#F5F5F5;color:var(--s2)}
-.ccm-btn-edit:active{background:#E0E0E0}
-.ccm-btn-del{background:#FEF2F2;color:#DC2626}
-.ccm-btn-del:active{background:#FEE2E2}
 </style>
 </head>
 <body>
@@ -872,8 +812,6 @@ CARDS MOBILE (ocultos no desktop)
         <p>Importe um PDF ou preencha os campos<br>ao lado para adicionar o primeiro cliente.</p>
       </div>
     </div>
-    <!-- CARDS MOBILE -->
-    <div id="tbody-mobile" class="tbody-mobile"></div>
   </div><!-- fecha view-clientes -->
 
   </main>
@@ -1312,14 +1250,12 @@ function renderTabela() {
     return matchBusca && matchFiltro;
   });
 
-  const tbody      = document.getElementById('tbody');
-  const tbodyMob   = document.getElementById('tbody-mobile');
-  const empty      = document.getElementById('empty');
+  const tbody = document.getElementById('tbody');
+  const empty = document.getElementById('empty');
   document.getElementById('tbar-count').textContent = list.length;
 
   if (list.length === 0) {
     tbody.innerHTML = '';
-    if (tbodyMob) tbodyMob.innerHTML = '<div style="text-align:center;padding:48px 16px;color:var(--s3);font-size:13px">Nenhum cliente encontrado.</div>';
     empty.style.display = 'block';
     return;
   }
@@ -1353,34 +1289,6 @@ function renderTabela() {
       </td>
     </tr>`;
   }).join('');
-
-  if (tbodyMob) {
-    tbodyMob.innerHTML = list.map(c => {
-      const isContemp = c.status === 'Contemplado';
-      return `
-      <div class="cliente-card-mobile">
-        <div class="ccm-nome">${c.nome}</div>
-        <div class="ccm-cota">${c.cota}</div>
-        <div class="ccm-grid">
-          <div class="ccm-field"><span class="ccm-label">Modelo</span><span class="ccm-value">${c.modelo}</span></div>
-          <div class="ccm-field"><span class="ccm-label">Cor</span><span class="ccm-value">${c.cor}</span></div>
-          <div class="ccm-field"><span class="ccm-label">Status</span><span class="ccm-value"><span class="pill ${isContemp?'c':'a'}">${c.status}</span></span></div>
-          <div class="ccm-field"><span class="ccm-label">Entrada</span><span class="ccm-value">${c.entrada}</span></div>
-          <div class="ccm-field"><span class="ccm-label">Contemplacao</span><span class="ccm-value">${c.contemplacao}</span></div>
-        </div>
-        <div class="ccm-footer">
-          <button class="ccm-btn ccm-btn-edit" onclick="abrirModal('${c.id}')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-            Editar
-          </button>
-          <button class="ccm-btn ccm-btn-del" onclick="remover('${c.id}')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-            Remover
-          </button>
-        </div>
-      </div>`;
-    }).join('');
-  }
 }
 
 // ═══════════════════════════════════════
@@ -1564,15 +1472,30 @@ function setAba(n, btn) {
 const ESTOQUE_KEY = 'mm_estoque_v1';
 let estoqueData = {};
 
-function carregarEstoque() {
+async function carregarEstoque() {
+  try {
+    const resp = await fetch('https://web-production-78d587.up.railway.app/estoque');
+    if (resp.ok) {
+      estoqueData = await resp.json();
+      localStorage.setItem(ESTOQUE_KEY, JSON.stringify(estoqueData));
+      return;
+    }
+  } catch(e) {}
   try {
     const saved = localStorage.getItem(ESTOQUE_KEY);
     estoqueData = saved ? JSON.parse(saved) : {};
   } catch(e) { estoqueData = {}; }
 }
 
-function salvarEstoque() {
+async function salvarEstoque() {
   localStorage.setItem(ESTOQUE_KEY, JSON.stringify(estoqueData));
+  try {
+    await fetch('https://web-production-78d587.up.railway.app/estoque', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ estoque: estoqueData })
+    });
+  } catch(e) {}
 }
 
 // ═══════════════════════════════════════
@@ -1646,7 +1569,7 @@ function limparFormEstoque() {
 // ═══════════════════════════════════════
 //  ABA 2 — ACOES
 // ═══════════════════════════════════════
-function adicionarAoEstoque() {
+async function adicionarAoEstoque() {
   const modelo = document.getElementById('e-modelo').value.trim().toUpperCase();
   const cor    = document.getElementById('e-cor').value.trim().toUpperCase();
   if (!modelo || !cor) { toast('Informe o modelo e a cor'); return; }
@@ -1659,7 +1582,7 @@ function adicionarAoEstoque() {
     if (!estoqueData[modelo]) estoqueData[modelo] = {};
     if (!estoqueData[modelo][cor]) estoqueData[modelo][cor] = 0;
     estoqueData[modelo][cor]++;
-    salvarEstoque();
+    await salvarEstoque();
     renderEstoque2();
     limparFormEstoque();
     toast(`${modelo} — ${cor} adicionada ao estoque`);
@@ -1669,10 +1592,10 @@ function adicionarAoEstoque() {
   }
 }
 
-function zerarEstoque() {
+async function zerarEstoque() {
   if (!confirm('Tem certeza que deseja zerar todo o estoque? Esta acao nao pode ser desfeita.')) return;
   estoqueData = {};
-  salvarEstoque();
+  await salvarEstoque();
   renderEstoque2();
   toast('Estoque zerado');
 }
@@ -1853,7 +1776,7 @@ carregar().then(() => {
   renderTabela();
   atualizarKPIs();
 });
-carregarEstoque();
+carregarEstoque().then(() => renderEstoque2());
 
 </script>
 </body>
