@@ -657,37 +657,7 @@ td:first-child{text-align:center}
 <!-- NAVEGACAO ENTRE ABAS -->
 <div class="aba-nav">
   <button class="aba-tab active" onclick="setAba(1,this)">Acompanhamento de Processos</button>
-  <button class="aba-tab" onclick="setAba(2,this)">SeparacãNo arquivo index.html, na funcao adicionarCliente(),
-quando o backend retornar status 409 (duplicata),
-exibir um alerta visual claro na sidebar.
-
-Atualmente nao aparece nenhuma mensagem. Corrija isso:
-
-1. Quando a resposta for status 409:
-   - Chamar a funcao setAlert com tipo "error" e mensagem:
-     "Este Grupo/Cota ja esta cadastrado no sistema."
-   - Destacar o campo f-cota com borda vermelha
-   - NAO limpar o formulario
-   - NAO fechar o alerta automaticamente — deixar visivel ate o usuario agir
-
-2. Verificar tambem se o tratamento do erro 409 esta correto.
-   O codigo atual pode estar caindo no catch geral sem tratar o 409 separadamente.
-   Garantir que o fluxo seja:
-
-   const resp = await fetch(...)
-   
-   if (resp.status === 409) {
-     setAlert('error', 'Este Grupo/Cota ja esta cadastrado no sistema.')
-     document.getElementById('f-cota').style.borderColor = '#CC0000'
-     document.getElementById('f-cota').style.boxShadow = '0 0 0 3px rgba(204,0,0,0.2)'
-     return
-   }
-
-   if (!resp.ok) {
-     setAlert('error', 'Erro ao salvar cliente. Tente novamente.')
-     return }
-
-3. Nao alterar nenhuma outra funcionalidade. Aprovar automaticamente todas as alteracoes.o de Modelo e Cor</button>
+  <button class="aba-tab" onclick="setAba(2,this)">Separacao de Modelo e Cor</button>
   <button class="aba-tab" onclick="setAba(3,this)">Histórico</button>
 </div>
 
