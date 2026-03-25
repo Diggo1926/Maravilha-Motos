@@ -619,7 +619,7 @@ td:first-child{text-align:center}
   .wrap{grid-template-columns:1fr}
   .sidebar{position:static;max-height:none;border-right:none;border-bottom:1px solid var(--bd)}
   .tcard{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{min-width:600px}
+  table{min-width:650px}
   .kpis{grid-template-columns:1fr 1fr}
   .fgrid{grid-template-columns:1fr}
   .view-tabs{width:100%}
@@ -627,9 +627,15 @@ td:first-child{text-align:center}
   header{padding:0 12px}
   .logo-name{font-size:16px}
   .logo-badge{width:36px;height:36px}
-  .btn-row-action{width:36px;height:36px}
   .modal{width:96vw}
   .modal-body .fgrid{grid-template-columns:1fr}
+  td:last-child{display:flex !important;gap:8px;padding:8px}
+  .btn-row-action{
+    width:40px !important;height:40px !important;min-width:40px !important;
+    display:flex !important;align-items:center;justify-content:center;
+    border-radius:8px;background:#F5F5F5 !important;
+  }
+  .btn-row-action:active{background:#FEF2F2 !important;color:#CC0000 !important}
 }
 </style>
 </head>
