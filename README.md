@@ -1,34 +1,34 @@
 # Maravilha-Motos
 
-Site institucional de loja de motos com sistema de consorcios, desenvolvido com HTML, CSS e JavaScript puro.
+Site institucional de loja de motos com sistema de consórcios, desenvolvido com HTML, CSS e JavaScript.
 
-## Demo
+## Demonstração
 
-Acesse o projeto em producao: [maravilha-motos.rodrigomamede-dev.workers.dev](https://maravilha-motos.rodrigomamede-dev.workers.dev/)
+Acesse o projeto em produção: [maravilha-motos.rodrigomamede-dev.workers.dev](https://maravilha-motos.rodrigomamede-dev.workers.dev/)
 
 ## Sobre o Projeto
 
-O projeto consiste em um site institucional para uma loja de motos, apresentando o catalogo de veiculos, informacoes sobre consorcios e formulario de contato. O layout e responsivo e adaptado para dispositivos moveis.
+Site institucional desenvolvido para uma loja de motos, com apresentação dos veículos disponíveis, informações sobre consórcios e seção de contato. O layout é responsivo e funciona em dispositivos móveis e desktop.
 
 ## Tecnologias Utilizadas
 
 - HTML5
 - CSS3
-- JavaScript (ES6+)
-- Cloudflare Workers (deploy)
+- JavaScript
+- Cloudflare Workers (hospedagem)
 
 ## Funcionalidades
 
-- Pagina institucional com apresentacao da empresa
-- Catalogo de motos com filtros
-- Secao de consorcios com simulacao
+- Página inicial com apresentação da empresa
+- Catálogo de motos
+- Seção de consórcios
 - Layout responsivo para mobile e desktop
-- Formulario de contato
+- Formulário de contato
 
 ## Como Executar Localmente
 
 ```bash
-# Clone o repositorio
+# Clone o repositório
 git clone https://github.com/Diggo1926/Maravilha-Motos.git
 
 # Acesse a pasta
@@ -39,4 +39,4 @@ cd Maravilha-Motos
 
 ## Autor
 
-Rodrigo Mamede - [github.com/Diggo1926](https://github.com/Diggo1926)
+Rodrigo Mamede — [github.com/Diggo1926](https://github.com/Diggo1926)
