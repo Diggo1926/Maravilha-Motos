@@ -1,34 +1,34 @@
-# 🏍️ Maravilha Motos
+# Maravilha Motos
 
-Site institucional da **Maravilha Motos**, loja de motos com sistema de consórcios, desenvolvido com HTML, CSS e JavaScript.
+Site institucional da **Maravilha Motos**, loja de motos com sistema de consorcios, desenvolvido com HTML, CSS e JavaScript.
 
-## 🔗 Acesse o Site
+## Acesse o Site
 
-👉 [maravilha-motos.rodrigomamede-dev.workers.dev](https://maravilha-motos.rodrigomamede-dev.workers.dev/)
+[maravilha-motos.rodrigomamede-dev.workers.dev](https://maravilha-motos.rodrigomamede-dev.workers.dev/)
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
-Site institucional com apresentação dos veículos disponíveis, informações sobre consórcios e seção de contato. O layout é responsivo e funciona em dispositivos móveis e desktop.
+Site institucional com apresentacao dos veiculos disponiveis, informacoes sobre consorcios e secao de contato. O layout e responsivo e funciona em dispositivos moveis e desktop.
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-- **HTML5** — estrutura semântica
+- **HTML5** — estrutura semantica
 - **CSS3** — estilos e responsividade
 - **JavaScript** — interatividade
 - **Cloudflare Workers** — hospedagem e deploy
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-- Página inicial com apresentação da empresa
-- Catálogo de motos disponíveis
-- Seção de consórcios com informações detalhadas
+- Pagina inicial com apresentacao da empresa
+- Catalogo de motos disponiveis
+- Secao de consorcios com informacoes detalhadas
 - Layout responsivo para mobile e desktop
-- Formulário de contato
+- Formulario de contato
 
-## ⚙️ Como Executar Localmente
+## Como Executar Localmente
 
 ```bash
-# Clone o repositório
+# Clone o repositorio
 git clone https://github.com/Diggo1926/Maravilha-Motos.git
 
 # Acesse a pasta
@@ -37,6 +37,6 @@ cd Maravilha-Motos
 # Abra o arquivo index.html no navegador
 ```
 
-## 👨‍💻 Desenvolvedor
+## Desenvolvedor
 
 Feito por [Rodrigo Mamede](https://github.com/Diggo1926)
