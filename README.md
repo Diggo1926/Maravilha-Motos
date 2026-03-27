@@ -1,31 +1,31 @@
-# Maravilha-Motos
+# 🏍️ Maravilha Motos
 
-Site institucional de loja de motos com sistema de consórcios, desenvolvido com HTML, CSS e JavaScript.
+Site institucional da **Maravilha Motos**, loja de motos com sistema de consórcios, desenvolvido com HTML, CSS e JavaScript.
 
-## Demonstração
+## 🔗 Acesse o Site
 
-Acesse o projeto em produção: [maravilha-motos.rodrigomamede-dev.workers.dev](https://maravilha-motos.rodrigomamede-dev.workers.dev/)
+👉 [maravilha-motos.rodrigomamede-dev.workers.dev](https://maravilha-motos.rodrigomamede-dev.workers.dev/)
 
-## Sobre o Projeto
+## 📋 Sobre o Projeto
 
-Site institucional desenvolvido para uma loja de motos, com apresentação dos veículos disponíveis, informações sobre consórcios e seção de contato. O layout é responsivo e funciona em dispositivos móveis e desktop.
+Site institucional com apresentação dos veículos disponíveis, informações sobre consórcios e seção de contato. O layout é responsivo e funciona em dispositivos móveis e desktop.
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-- HTML5
-- CSS3
-- JavaScript
-- Cloudflare Workers (hospedagem)
+- **HTML5** — estrutura semântica
+- **CSS3** — estilos e responsividade
+- **JavaScript** — interatividade
+- **Cloudflare Workers** — hospedagem e deploy
 
-## Funcionalidades
+## ✨ Funcionalidades
 
 - Página inicial com apresentação da empresa
-- Catálogo de motos
-- Seção de consórcios
+- Catálogo de motos disponíveis
+- Seção de consórcios com informações detalhadas
 - Layout responsivo para mobile e desktop
 - Formulário de contato
 
-## Como Executar Localmente
+## ⚙️ Como Executar Localmente
 
 ```bash
 # Clone o repositório
@@ -37,6 +37,6 @@ cd Maravilha-Motos
 # Abra o arquivo index.html no navegador
 ```
 
-## Autor
+## 👨‍💻 Desenvolvedor
 
-Rodrigo Mamede — [github.com/Diggo1926](https://github.com/Diggo1926)
+Feito por [Rodrigo Mamede](https://github.com/Diggo1926)
